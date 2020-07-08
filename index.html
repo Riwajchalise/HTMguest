@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;}
+
+input[type=text], input[type=email], select {
+  width: 49%;
+  font-size:20px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.avatar {
+  width: 20%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+</style>
+</head>
+<body style="background:#000;">
+
+<center><h1 style="color:#fff">This form is exclusive for the guest of Himalaya Toastmaster. We will not disclose your personal information nor will we voluntarily share, rent or sell this data outside the club.</h1></center>
+
+<form id="form" target="_self" onsubmit="return postToGoogle();" action="" autocomplete="off"> 
+<input id="nameField" name="entry.517007061" placeholder="Enter your name" type="text" required> 
+<input id="emailField" name="entry.1171490947" placeholder="Enter your email" type="email" required> 
+<input id="mobField" name="entry.381045333" placeholder="Enter your 10 Digit Phone Number" type="text" pattern="^\d{10}$" required>  
+<input id="query" name="entry.533118334" placeholder="Any Queries?" type="text"> 
+<button id="send" type="submit" class="common_btn">Send</button>
+</form>
+
+<h2 id="success-msg" style="text-align: center !important; margin-top:190px !important; display:none; color:rgb(101, 103, 200)"> Thanks for your response, keep visiting HTM</h2>
+
+
+
+<img src="https://scontent.fktm1-1.fna.fbcdn.net/v/t1.0-9/84470728_1600204023453090_5083895184173826048_o.jpg?_nc_cat=107&_nc_sid=e007fa&_nc_ohc=stbzUgGsbN8AX_babmD&_nc_ht=scontent.fktm1-1.fna&oh=a29202b0388d78bf2103f37f85a6eec2&oe=5F2D091D" style="width:100%; opacity:.4;">
+
+
+
+
+<script>
+function postToGoogle() {
+                var field1 = $("#nameField").val();
+                var field2 = $("#emailField").val();
+                var field3 = $("#mobField").val();
+                var field4 = $("#query").val();
+ 				
+				if(field1 == ""){
+					alert('Please Fill Your Name');
+					document.getElementById("nameField").focus();
+					return false;
+				}
+				if(field2 == ""){
+					alert('Please Fill Your Email');
+					document.getElementById("emailField").focus();
+					return false;
+				}
+				if(field3 == "" || field3.length > 10 || field3.length < 10){
+					alert('Please Fill Your Mobile Number');
+					document.getElementById("mobField").focus();
+					return false;
+				}
+
+
+				
+	
+                $.ajax({
+                    url: "https://docs.google.com/forms/d/e/1FAIpQLSelARn0Mvz6J4VFZZeKwtwX7sZzxm8HLB7Ac_EtpdL_My2IUA/formResponse?",
+					data: {"entry.517007061": field1, "entry.1171490947": field2, "entry.381045333": field3, "entry.533118334": field4},
+                    type: "POST",
+                    dataType: "xml",
+                    success: function(d)
+					{
+					},
+					error: function(x, y, z)
+						{
+
+							$('#success-msg').show();
+							$('#form').hide();
+							
+						}
+                });
+				return false;
+            }
+</script>
+</body>
+</html>
