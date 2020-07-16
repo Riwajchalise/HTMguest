@@ -79,6 +79,7 @@ span.psw {
 <input id="emailField" name="entry.1171490947" placeholder="Email" type="email" required> 
 <input id="mobField" name="entry.381045333" placeholder="Phone Number" type="text">  
 <input id="query" name="entry.533118334" placeholder="Any Queries?" type="text"> 
+<input id="toastmaster" name="entry.777444112" placeholder="If you are a toastmaster, your club name." type="text" style="width: 100%;"> 
 <button id="send" type="submit" class="common_btn">Send</button>
 </form>
 
@@ -97,6 +98,7 @@ function postToGoogle() {
                 var field2 = $("#emailField").val();
                 var field3 = $("#mobField").val();
                 var field4 = $("#query").val();
+                var field5 = $("#toastmaster").val();
  				
 				if(field1 == ""){
 					alert('Please Fill Your Name');
@@ -119,7 +121,7 @@ function postToGoogle() {
 	
                 $.ajax({
                     url: "https://docs.google.com/forms/d/e/1FAIpQLSelARn0Mvz6J4VFZZeKwtwX7sZzxm8HLB7Ac_EtpdL_My2IUA/formResponse?",
-					data: {"entry.517007061": field1, "entry.1171490947": field2, "entry.381045333": field3, "entry.533118334": field4},
+					data: {"entry.517007061": field1, "entry.1171490947": field2, "entry.381045333": field3, "entry.533118334": field4,"entry.777444112": field5},
                     type: "POST",
                     dataType: "xml",
                     success: function(d)
